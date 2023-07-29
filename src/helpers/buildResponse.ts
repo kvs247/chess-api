@@ -1,4 +1,4 @@
-export async function buildResponse(statusCode: number, body: {}) {
+export const buildResponse = (statusCode: number, body: {}) => {
     return {
         statusCode,
         headers: {

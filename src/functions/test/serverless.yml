@@ -1,9 +1,8 @@
 getTest:
-  handler: src/functions/test/index.getTestTableItems
+  handler: src/functions/test/index.ts.getTestTable
   events:
     - http:
-        path: test
-        exclude: true
+        path: /test
         method: get
         cors:
           origin: "*"

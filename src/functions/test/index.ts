@@ -1,14 +1,20 @@
 import { APIGatewayProxyEvent } from "aws-lambda";
-import { getTestTableItems } from "./queries";
-import { buildResponse } from "../../helpers/buildResponse";
 
-export async function getTestTable(event: APIGatewayProxyEvent) {
+module.exports.getTestTable = async (event: APIGatewayProxyEvent) => {
     console.log("event\n", event);
     try {
-        const response = await getTestTableItems();
-        return buildResponse(200, response);
+        return {
+            statusCode: 200,
+            headers: {
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Credentials": true,
+            },
+            body: {
+                msg: "hello-"
+            },
+        };
     } catch (error) {
         console.log("error\n", error);
-        buildResponse(500, { Message: "error getting TestTable" });
     }
 }

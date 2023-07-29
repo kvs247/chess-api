@@ -1,6 +1,12 @@
 {
+  "name": "chess-api",
+  "type": "module",
   "dependencies": {
     "aws-lambda": "^1.0.7",
     "aws-sdk": "^2.1425.0"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.119",
+    "@types/node": "^20.4.5"
   }
 }
