@@ -4,6 +4,9 @@ provider:
   name: aws
   stage: ${opt:stage, 'dev'}
 
+functions:
+  - ${file(./src/functions/test/serverless.yml)}
+
 resources:
   Resources:
     TestTable:
