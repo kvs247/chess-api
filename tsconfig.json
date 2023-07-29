@@ -2,7 +2,7 @@
     "compilerOptions": {
         "moduleResolution": "node",
         "esModuleInterop": true,
-        "target": "es5",
+        "target": "es6",
         "module": "ES2015",
         "allowSyntheticDefaultImports": true
     }
