@@ -162,10 +162,10 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/chess-api/dev/1690667679318-2023-07-29T21:54:39.318Z/chess-api.zip"
+          "S3Key": "serverless/chess-api/dev/1690736058547-2023-07-30T16:54:18.547Z/chess-api.zip"
         },
-        "Handler": "src/functions/test/index.ts.getTestTable",
-        "Runtime": "nodejs14.x",
+        "Handler": "src/functions/test/index.getTestTable",
+        "Runtime": "nodejs16.x",
         "FunctionName": "chess-api-dev-getTest",
         "MemorySize": 1024,
         "Timeout": 6,
@@ -180,14 +180,14 @@
         "GetTestLogGroup"
       ]
     },
-    "GetTestLambdaVersiongTNsHsL4CYHdsLnViYAgJYsRrGZp8uPyB9nN8zNbTA": {
+    "GetTestLambdaVersionfOfop7NbULNnxK8dUszwoPq01CaZ86Aw3zf6IooE6tQ": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "GetTestLambdaFunction"
         },
-        "CodeSha256": "nH0vpeaCS4Is0FUVGJiYFaoWR265XT3TsXfwsmBU+qI="
+        "CodeSha256": "bDLBa+JimZFquZBTOSv3spab26eWMm8M+GbDoRLd8s8="
       }
     },
     "ApiGatewayRestApi": {
@@ -308,7 +308,7 @@
         "GetTestLambdaPermissionApiGateway"
       ]
     },
-    "ApiGatewayDeployment1690667675905": {
+    "ApiGatewayDeployment1690736025100": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -390,7 +390,7 @@
     "GetTestLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "GetTestLambdaVersiongTNsHsL4CYHdsLnViYAgJYsRrGZp8uPyB9nN8zNbTA"
+        "Ref": "GetTestLambdaVersionfOfop7NbULNnxK8dUszwoPq01CaZ86Aw3zf6IooE6tQ"
       },
       "Export": {
         "Name": "sls-chess-api-dev-GetTestLambdaFunctionQualifiedArn"

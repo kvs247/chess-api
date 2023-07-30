@@ -1,5 +1,5 @@
 getTest:
-  handler: src/functions/test/index.ts.getTestTable
+  handler: src/functions/test/index.getTestTable
   events:
     - http:
         path: /test
