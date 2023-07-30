@@ -1,8 +1,22 @@
 service: chess-api
 
+plugins:    
+  - serverless-plugin-typescript
+  - serverless-offline
+
 provider:
   name: aws
   stage: ${opt:stage, 'dev'}
+  region: us-east-2
+  runtime: nodejs16.x
+
+functions:
+  - ${file(./src/functions/test/serverless.yml)}
+
+custom:
+  typescript:
+    functions:
+      - getTest
 
 resources:
   Resources:
@@ -17,3 +31,4 @@ resources:
           - AttributeName: ID
             KeyType: HASH
         BillingMode: PAY_PER_REQUEST
+        
