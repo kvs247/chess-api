@@ -1,7 +1,7 @@
 {
     "body": {
         "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
-        "toIndex": 24,
-        "fromIndex": 42
+        "fromIndex": 0,
+        "toIndex": 16
     }
 }
