@@ -1,4 +1,4 @@
-export interface MoveRequest {
+export interface ProcessMoveRequest {
   fen: string;
   fromIndex: number;
   toIndex: number;

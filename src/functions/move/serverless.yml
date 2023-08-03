@@ -1,5 +1,13 @@
+getGameById:
+  handler: src/functions/move/index.getGameById
+  events:
+    - http:
+        path: games/{id}
+        method: get
+        cors:
+          origin: "*"
 processMove:
-  handler: src/functions/move/index.move
+  handler: src/functions/move/index.processMove
   events:
     - http:
         path: move

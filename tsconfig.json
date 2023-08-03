@@ -6,10 +6,15 @@
         "target": "es5",
         "outDir": ".build",
         "moduleResolution": "node",
-        "lib": ["es2021"],
+        "lib": [
+            "es2021"
+        ],
         "rootDir": "./",
         "noImplicitAny": true,
         "esModuleInterop": true,
         "allowJs": true
-    }
+    },
+    "include": [
+        "**/*"
+    ]
 }

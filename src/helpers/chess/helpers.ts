@@ -1,8 +1,8 @@
-import { ParsedFEN } from "./types";
+import { ParsedFEN } from "../../functions/move/types";
 
-export const processInput = (
-  fen: string, 
-  fromIndex: number, 
+export const getFenFromMove = (
+  fen: string,
+  fromIndex: number,
   toIndex: number,
 ): string => {
   const pieceArray = fenToPieceArray(fen);
@@ -47,7 +47,7 @@ export const fenToPieceArray = (fen: string): Array<string | null> => {
         return Array(num).fill(null);
       }
       return char;
-    }).flat();  
+    }).flat();
 
   return pieceArray;
 };
@@ -59,7 +59,7 @@ const pieceArrayToFen = (
   let result = "";
 
   pieceArray.forEach((ele, idx) => {
-    if (idx % 8 === 0 && idx !==0) {
+    if (idx % 8 === 0 && idx !== 0) {
       result += "/";
     }
     if (ele === null) {
