@@ -27,4 +27,15 @@ resources:
           - AttributeName: ID
             KeyType: HASH
         BillingMode: PAY_PER_REQUEST
+    GamesTable:
+      Type: 'AWS::DynamoDB::Table'
+      Properties:
+        TableName: Games-${self:provider.stage}
+        AttributeDefinitions:
+          - AttributeName: gameId
+            AttributeType: S
+        KeySchema:
+          - AttributeName: gameId
+            KeyType: HASH
+        BillingMode: PAY_PER_REQUEST        
         
