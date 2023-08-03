@@ -12,11 +12,7 @@ provider:
 
 functions:
   - ${file(./src/functions/test/serverless.yml)}
-
-custom:
-  typescript:
-    functions:
-      - getTest
+  - ${file(./src/functions/move/serverless.yml)}
 
 resources:
   Resources:

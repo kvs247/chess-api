@@ -2,7 +2,7 @@ getTest:
   handler: src/functions/test/index.getTestTable
   events:
     - http:
-        path: /test
+        path: test
         method: get
         cors:
           origin: "*"
