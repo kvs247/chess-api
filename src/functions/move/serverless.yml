@@ -1,0 +1,8 @@
+processMove:
+  handler: src/functions/move/index.move
+  events:
+    - http:
+        path: move
+        method: post
+        cors:
+          origin: "*"
