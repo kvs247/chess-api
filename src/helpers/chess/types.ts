@@ -1,0 +1,1 @@
+export type PieceArray = Array<string | null>

@@ -1,15 +1,15 @@
 import { APIGatewayProxyEvent } from "aws-lambda";
 import { buildResponse } from "../../helpers/buildResponse";
 import { ProcessMoveRequest } from "./types";
-import { getFenFromMove } from "../../helpers/chess/helpers";
+import getFenFromMove from "../../helpers/chess/index";
 import { getGameById, putGame } from "./queries";
 
 module.exports.processMove = async (event: APIGatewayProxyEvent) => {
   console.log("event:\n", event);
   try {
     if (event.body) {
-      const body: ProcessMoveRequest = JSON.parse(event.body);
-      // const body = event.body;
+      // const body: ProcessMoveRequest = JSON.parse(event.body);
+      const body = event.body;
       const { fen, fromIndex, toIndex } = body;
       const newFen = getFenFromMove(fen, fromIndex, toIndex);
       const newGameState = {
@@ -19,7 +19,7 @@ module.exports.processMove = async (event: APIGatewayProxyEvent) => {
       await putGame(newGameState);
       return buildResponse(200, { newFen });
     } else {
-      const message = "No body in HTTP request";
+      const message = "No request body";
       console.log("Error:\n", message);
       return buildResponse(400, { message });
     }
