@@ -4,6 +4,7 @@ import { PieceArray } from "./types";
 import knightCanMove from "./pieces/knight/knight";
 import bishopCanMove from "./pieces/bishop/bishop";
 import rookCanMove from "./pieces/rook/rook";
+import queenCanMove from "./pieces/queen/queen";
 
 const getFenFromMove = (
   fen: string,
@@ -25,6 +26,8 @@ const getFenFromMove = (
     case "r":
       if (!rookCanMove(fen, fromIndex, toIndex)) return fen;
       break;
+    case "q":
+      if (!queenCanMove(fen, fromIndex, toIndex)) return fen;
   }
 
   pieceArray[fromIndex] = null;
