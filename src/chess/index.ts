@@ -14,7 +14,7 @@ const getFenFromMove = (
   if (piece === null) return fen;
 
   switch (piece.toLowerCase()) {
-    case "k":
+    case "n":
       if (!knightCanMove(fen, fromIndex, toIndex)) return fen;
       break;
   }

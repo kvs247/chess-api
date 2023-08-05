@@ -7,3 +7,7 @@ export const indexToFileRank = (index: number) => {
   const rank = 8 - (Math.floor(index / 8));
   return [file, rank];
 };
+
+export const fileRankToIndex = (file: number, rank: number) => {
+  return ((8 - (rank - 1) - 1) * 8) + (file - 1);
+};

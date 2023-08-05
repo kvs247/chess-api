@@ -1,7 +1,8 @@
-import { fenToPieceArray } from "../../helpers/fen/fenHelpers";
-import { PieceArray } from "../../types";
-import { offsets } from "./helpers";
-import { indexToFileRank } from "../../helpers/gen/genHelpers";
+import { indexToFileRank, fileRankToIndex } from "../../helpers/gen/genHelpers";
+import {
+  isFileRankOnBoard,
+  moveTargetingFriendly,
+} from "../helpers/helpers";
 
 function knightCanMove(
   fen: string,
@@ -9,17 +10,39 @@ function knightCanMove(
   toIndex: number,
 ): boolean {
 
+  if (moveTargetingFriendly(fen, fromIndex, toIndex)) return false;
 
-  return true;
+  if (getMoves(fromIndex).includes(toIndex)) return true;
+
+  return false;
 }
 
-function getMoves(fen: string, index: number) {
-  const pieceArray = fenToPieceArray(fen);
+const offsets = [
+  [1, 2],
+  [1, -2],
+  [-1, 2],
+  [-1, -2],
+  [2, 1],
+  [2, -1],
+  [-2, 1],
+  [-2, -1],
+];
+
+export const getMoves = (index: number) => {
+
   const [file, rank] = indexToFileRank(index);
+
+  const moves = [];
   for (const [offsetFile, offsetRank] of offsets) {
     const newFile = file + offsetFile;
     const newRank = rank + offsetRank;
+    if (isFileRankOnBoard(newFile, newRank)) {
+      const newIndex = fileRankToIndex(newFile, newRank);
+      moves.push(newIndex);
+    }
   }
+
+  return moves
 }
 
 export default knightCanMove;

@@ -1,4 +1,8 @@
-import { isNumeric, indexToFileRank } from "./genHelpers";
+import {
+  isNumeric,
+  indexToFileRank,
+  fileRankToIndex,
+} from "./genHelpers";
 
 test("test isNumeric", () => {
   expect(isNumeric("wowwhatacoolsentencewehavehere")).toBe(false);
@@ -14,4 +18,11 @@ test("test indexToFileRank", () => {
   expect(indexToFileRank(7)).toEqual([8, 8]);
   expect(indexToFileRank(56)).toEqual([1, 1]);
   expect(indexToFileRank(63)).toEqual([8, 1]);
+});
+
+test("test fileRanktToInex", () => {
+  expect(fileRankToIndex(1, 8)).toEqual(0);
+  expect(fileRankToIndex(8, 8)).toEqual(7);
+  expect(fileRankToIndex(1, 1)).toEqual(56);
+  expect(fileRankToIndex(8, 1)).toEqual(63);
 });
