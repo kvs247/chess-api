@@ -1,4 +1,4 @@
-import { fenToPieceArray, pieceArrayToFen } from "./helpers";
+import { fenToPieceArray, pieceArrayToFen } from "./helpers/fen/fenHelpers";
 import { PieceArray } from "./types";
 
 import knightCanMove from "./pieces/knight/knight";
@@ -13,7 +13,7 @@ const getFenFromMove = (
 
   if (piece === null) return fen;
 
-  switch(piece.toLowerCase()) {
+  switch (piece.toLowerCase()) {
     case "k":
       if (!knightCanMove(fen, fromIndex, toIndex)) return fen;
       break;

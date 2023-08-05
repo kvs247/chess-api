@@ -1,4 +1,4 @@
-function knightCanMove(
+function bishopCanMove(
   fen: string,
   fromIndex: number,
   toIndex: number,
@@ -7,4 +7,4 @@ function knightCanMove(
   return true;
 }
 
-export default knightCanMove;
+export default bishopCanMove;

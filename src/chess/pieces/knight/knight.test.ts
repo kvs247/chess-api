@@ -1,7 +1,7 @@
 import knightCanMove from "./knight";
-import startingFEN from "../../../../startingFEN";
+import { startingFen } from "../../startingPosition";
 
 test("test test", () => {
-  const fen = startingFEN;
+  const fen = startingFen;
   expect(knightCanMove(fen, 0, 16)).toBe(true);
 });

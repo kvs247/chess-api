@@ -1,7 +1,8 @@
-import { ParsedFEN } from "../../functions/move/types";
-import { PieceArray } from "./types";
+import { ParsedFEN } from "../../../functions/move/types";
+import { PieceArray } from "../../types";
+import { isNumeric } from "../gen/genHelpers";
 
-export const parseFEN = (fen: string): ParsedFEN => {
+export const parseFen = (fen: string): ParsedFEN => {
   const [
     piecePlacement,
     activeColor,
@@ -21,7 +22,7 @@ export const parseFEN = (fen: string): ParsedFEN => {
 };
 
 export const fenToPieceArray = (fen: string): PieceArray => {
-  const parsedFEN = parseFEN(fen);
+  const parsedFEN = parseFen(fen);
   const pieceArray = parsedFEN.piecePlacement
   .split("")
   .filter(char => char !== "/")
@@ -59,8 +60,4 @@ export const pieceArrayToFen = (
   }
   
   return result + suffix;
-};
-
-export const isNumeric = (text: string): boolean => {
-  return Number(text) === Number(parseFloat(text));
 };
