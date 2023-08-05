@@ -28,8 +28,7 @@ const offsets = [
   [-2, -1],
 ];
 
-export const getMoves = (index: number) => {
-
+export const getMoves = (index: number): number[] => {
   const [file, rank] = indexToFileRank(index);
 
   const moves = [];
@@ -42,7 +41,7 @@ export const getMoves = (index: number) => {
     }
   }
 
-  return moves
+  return moves;
 }
 
 export default knightCanMove;

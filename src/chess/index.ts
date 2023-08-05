@@ -2,6 +2,7 @@ import { fenToPieceArray, pieceArrayToFen } from "./helpers/fen/fenHelpers";
 import { PieceArray } from "./types";
 
 import knightCanMove from "./pieces/knight/knight";
+import bishopCanMove from "./pieces/bishop/bishop";
 
 const getFenFromMove = (
   fen: string,
@@ -16,6 +17,9 @@ const getFenFromMove = (
   switch (piece.toLowerCase()) {
     case "n":
       if (!knightCanMove(fen, fromIndex, toIndex)) return fen;
+      break;
+    case "b":
+      if (!bishopCanMove(fen, fromIndex, toIndex)) return fen;
       break;
   }
 
