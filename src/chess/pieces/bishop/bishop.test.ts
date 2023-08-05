@@ -25,5 +25,5 @@ test("test getMoves", () => {
   // corners with obstruction
   fen = "B6K/8/8/8/4n3/8/8/k7 w - - 0 1";
   expect(getMoves(fen, 0).sort((a, b) => a - b)).toEqual([9, 18, 27, 36]);
-  expect(getMoves(fen, 63).sort((a, b) => a - b)).toEqual([36, 45, 54]);  
+  expect(getMoves(fen, 63).sort((a, b) => a - b)).toEqual([36, 45, 54]);
 });

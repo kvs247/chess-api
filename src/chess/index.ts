@@ -3,6 +3,7 @@ import { PieceArray } from "./types";
 
 import knightCanMove from "./pieces/knight/knight";
 import bishopCanMove from "./pieces/bishop/bishop";
+import rookCanMove from "./pieces/rook/rook";
 
 const getFenFromMove = (
   fen: string,
@@ -20,6 +21,9 @@ const getFenFromMove = (
       break;
     case "b":
       if (!bishopCanMove(fen, fromIndex, toIndex)) return fen;
+      break;
+    case "r":
+      if (!rookCanMove(fen, fromIndex, toIndex)) return fen;
       break;
   }
 

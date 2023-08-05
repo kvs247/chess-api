@@ -5,7 +5,7 @@ import {
   moveTargetingFriendly,
 } from "../helpers/helpers";
 
-function bishopCanMove(
+function rookCanMove(
   fen: string,
   fromIndex: number,
   toIndex: number,
@@ -19,10 +19,10 @@ function bishopCanMove(
 }
 
 const offsets = [
-  [1, 1],
-  [1, -1],
-  [-1, 1],
-  [-1, -1],
+  [1, 0],
+  [0, 1],
+  [-1, 0],
+  [0, -1],
 ];
 
 export const getMoves = (fen: string, index: number): number[] => {
@@ -49,4 +49,4 @@ export const getMoves = (fen: string, index: number): number[] => {
   return moves;
 };
 
-export default bishopCanMove;
+export default rookCanMove;
