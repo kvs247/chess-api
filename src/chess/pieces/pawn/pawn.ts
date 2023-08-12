@@ -1,5 +1,5 @@
 import { parseFen, fenToPieceArray } from "../../helpers/fen/fenHelpers";
-import { fileRankToIndex, indexToFileRank } from "../../helpers/gen/genHelpers";
+import { fileRankToIndex, indexToFileRank, squareToIndex } from "../../helpers/gen/genHelpers";
 import { getPieceColor, moveTargetingFriendly } from "../helpers/helpers";
 
 function pawnCanMove(
@@ -16,7 +16,7 @@ function pawnCanMove(
 }
 
 export const getMoves = (fen: string, index: number): number[] => {
-  const parsedFEN = parseFen(fen);
+  const parsedFen = parseFen(fen);
   const pieceArray = fenToPieceArray(fen);
   const [file, rank] = indexToFileRank(index);
   const piece = pieceArray[index];
@@ -61,11 +61,18 @@ export const getMoves = (fen: string, index: number): number[] => {
   }
 
   // en passant
-  // const { enPassantTarget } = parsedFEN;
-  // if (enPassantTarget !== null) {
-  //   const enPassantTargetIndex
-  // }
-
+  const enPassantSquare = parsedFen.enPassantTarget;
+  if (enPassantSquare !== null) {
+    const enPassantIndex = squareToIndex(enPassantSquare);
+    const [enPassantFile, enPassantRank] = indexToFileRank(enPassantIndex);
+    if (Math.abs(file - enPassantFile) === 1) {
+      if (rank === enPassantRank - (1 * sign)) {
+        moves.push(enPassantIndex);
+      }
+    }
+  }
 
   return moves;
 };
+
+export default pawnCanMove;

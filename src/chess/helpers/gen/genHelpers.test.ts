@@ -3,6 +3,7 @@ import {
   indexToFileRank,
   fileRankToIndex,
   squareToIndex,
+  indexToSquare,
 } from "./genHelpers";
 
 test("test isNumeric", () => {
@@ -40,4 +41,13 @@ test("test squareToIndex", () => {
 
   expect(squareToIndex("d5")).toEqual(27);
   expect(squareToIndex("D5")).toEqual(27);    
+});
+
+test("test indexToSquare", () => {
+  expect(indexToSquare(0)).toEqual("a8");
+  expect(indexToSquare(7)).toEqual("h8");
+  expect(indexToSquare(56)).toEqual("a1");
+  expect(indexToSquare(63)).toEqual("h1");
+
+  expect(indexToSquare(27)).toEqual("d5");
 });

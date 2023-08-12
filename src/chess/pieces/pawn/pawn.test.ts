@@ -20,5 +20,8 @@ test("test getMoves", () => {
   fen = "k7/8/8/8/8/2B1q3/3P4/7K w - - 0 1";
   expect(getMoves(fen, 51).sort((a, b) => a - b)).toEqual([35, 42, 43, 44]);
 
+  // en passant
   fen = "rnbqkb1r/ppp1pppp/7n/2PpP3/8/7N/PP1P1PPP/RNBQKB1R w KQkq d6 0 2";
+  expect(getMoves(fen, 26).sort((a, b) => a - b)).toEqual([18, 19]);
+  expect(getMoves(fen, 28).sort((a, b) => a - b)).toEqual([19, 20]);
 });

@@ -18,3 +18,10 @@ export const squareToIndex = (square: string): number => {
   const rank = Number(rankString);
   return fileRankToIndex(file, rank);
 };
+
+export const indexToSquare = (index: number): string => {
+  const [file, rank] = indexToFileRank(index);
+  const fileChar = String.fromCharCode(file + 96);
+  const indexString = String(rank);
+  return fileChar + indexString;
+};
