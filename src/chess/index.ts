@@ -1,6 +1,7 @@
 import { indexToSquare, squareToIndex } from "./helpers/gen/genHelpers";
 import { fenToPieceArray, parseFen, pieceArrayToFen } from "./helpers/fen/fenHelpers";
 import { getPieceColor } from "./pieces/helpers/helpers";
+import isKingInCheck from "./helpers/check/check";
 import { PieceArray } from "./types";
 
 import pawnCanMove from "./pieces/pawn/pawn";
@@ -65,6 +66,10 @@ const getFenFromMove = (
   }
 
   const result = pieceArrayToFen(pieceArray, suffix);
+
+  // check
+  if (isKingInCheck(pieceColor, result)) return fen;
+
   return result;
 };
 
