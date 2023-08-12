@@ -1,6 +1,7 @@
 import AWS from "aws-sdk";
 import { queryTable } from "../../helpers/baseQueries";
 import { buildResponse } from "../../helpers/buildResponse";
+import { startingFen } from "../../chess/startingPosition";
 
 const dynamoDB = new AWS.DynamoDB.DocumentClient();
 
@@ -30,5 +31,23 @@ export async function putGame(gameData: any) {
       return buildResponse(201, {});
     }, (error) => {
       console.log("Error saving new game state:\n", error);
+    });
+};
+
+export async function resetGame(gameId: string) {
+  const params = {
+    TableName: dynamoDBTableName,
+    Item: {
+      gameId,
+      fen: startingFen,
+    },
+  };
+  return await dynamoDB
+    .put(params)
+    .promise()
+    .then(() => {
+      return buildResponse(201, {});
+    }, (error) => {
+      console.log("error while resetting game:\n", error);
     });
 };

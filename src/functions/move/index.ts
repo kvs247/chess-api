@@ -2,7 +2,7 @@ import { APIGatewayProxyEvent } from "aws-lambda";
 import { buildResponse } from "../../helpers/buildResponse";
 import { ProcessMoveRequest } from "./types";
 import getFenFromMove from "../../chess/index";
-import { getGameById, putGame } from "./queries";
+import { getGameById, putGame, resetGame } from "./queries";
 
 module.exports.processMove = async (event: APIGatewayProxyEvent) => {
   console.log("event:\n", event);
@@ -40,11 +40,30 @@ module.exports.getGameById = async (event: APIGatewayProxyEvent) => {
       const [game] = await getGameById(gameId)
       return buildResponse(200, { game });
     } else {
-      const message = "event does not have body";
-      console.log("error:\n", message);
+      const message = "event does not have pathParameters";
+      console.log("error: ", message);
       return buildResponse(400, { message });
     }
   } catch (error) {
     return buildResponse(500, { message: "error getting game" });
+  }
+};
+
+module.exports.resetGameById = async (event: APIGatewayProxyEvent) => {
+  console.log("event:\n", event);
+  try {
+    if (
+      event.pathParameters &&
+      event.pathParameters.id
+    ) {
+      const gameId = event.pathParameters.id;
+      await resetGame(gameId);
+    } else {
+      const message = "event does not have pathParameters";
+      console.log("error: ", message);
+      return buildResponse(400, { message });
+    }
+  } catch (error) {
+    return buildResponse(500, { message: "error resetting game" });
   }
 };

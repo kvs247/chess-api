@@ -1,4 +1,7 @@
 {
+    "pathParameters": {
+        "id": "0"
+    },
     "body": {
         "fen": "rnbqkbnr/ppppp1pp/8/4Pp2/8/N7/PPPP1PPP/R1BQKBNR w KQkq f6 0 4",
         "fromIndex": 28,
