@@ -9,7 +9,7 @@ function kingCanMove(
 
   if (moveTargetingFriendly(fen, fromIndex, toIndex)) return false;
 
-  if (getMoves(fromIndex).includes(toIndex)) return true;
+  if (getVisibility(fromIndex).includes(toIndex)) return true;
 
   return false;
 }
@@ -25,7 +25,7 @@ const offsets = [
   [-1, -1],
 ];
 
-export const getMoves = (index: number): number[] => {
+export const getVisibility = (index: number): number[] => {
   const [file, rank] = indexToFileRank(index);
 
   const moves = [];

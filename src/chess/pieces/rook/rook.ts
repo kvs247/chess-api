@@ -13,7 +13,7 @@ function rookCanMove(
 
   if (moveTargetingFriendly(fen, fromIndex, toIndex)) return false;
 
-  if (getMoves(fen, fromIndex).includes(toIndex)) return true;
+  if (getVisibility(fen, fromIndex).includes(toIndex)) return true;
 
   return false;
 }
@@ -25,7 +25,7 @@ const offsets = [
   [0, -1],
 ];
 
-export const getMoves = (fen: string, index: number): number[] => {
+export const getVisibility = (fen: string, index: number): number[] => {
   const pieceArray = fenToPieceArray(fen);
   const [file, rank] = indexToFileRank(index);
 

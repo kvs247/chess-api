@@ -1,4 +1,4 @@
-import knightCanMove, { getMoves } from "./knight";
+import knightCanMove, { getVisibility } from "./knight";
 
 test("test knightCanMove", () => {
   const fen = "N6k/2n5/1N6/8/8/8/8/7K w - - 0 1";
@@ -9,13 +9,13 @@ test("test knightCanMove", () => {
   expect(knightCanMove(fen, 10, 2)).toEqual(false); // knight moving to open square out of range
 });
 
-test("test getMoves", () => {
+test("test getVisibility", () => {
   // corners
-  expect(getMoves(0).sort()).toEqual([10, 17]);
-  expect(getMoves(7).sort()).toEqual([13, 22]);
-  expect(getMoves(56).sort()).toEqual([41, 50]);
-  expect(getMoves(63).sort()).toEqual([46, 53]);
+  expect(getVisibility(0).sort()).toEqual([10, 17]);
+  expect(getVisibility(7).sort()).toEqual([13, 22]);
+  expect(getVisibility(56).sort()).toEqual([41, 50]);
+  expect(getVisibility(63).sort()).toEqual([46, 53]);
 
   // center
-  expect(getMoves(27).sort()).toEqual([10, 12, 17, 21, 33, 37, 42, 44])
+  expect(getVisibility(27).sort()).toEqual([10, 12, 17, 21, 33, 37, 42, 44])
 });

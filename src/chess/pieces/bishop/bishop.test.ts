@@ -1,4 +1,4 @@
-import bishopCanMove, { getMoves } from "./bishop";
+import bishopCanMove, { getVisibility } from "./bishop";
 
 test("test bishopCanMove", () => {
   // corners
@@ -16,14 +16,14 @@ test("test bishopCanMove", () => {
   expect(bishopCanMove(fen, 0, 45)).toEqual(false); // white bishop moving behind knight  
 });
 
-test("test getMoves", () => {
+test("test getVisibility", () => {
   // corners
   let fen = "B6K/8/8/8/8/8/8/k7 w - - 0 1";
-  expect(getMoves(fen, 0).sort((a, b) => a - b)).toEqual([9, 18, 27, 36, 45, 54, 63]);
-  expect(getMoves(fen, 63).sort((a, b) => a - b)).toEqual([0, 9, 18, 27, 36, 45, 54]);
+  expect(getVisibility(fen, 0).sort((a, b) => a - b)).toEqual([9, 18, 27, 36, 45, 54, 63]);
+  expect(getVisibility(fen, 63).sort((a, b) => a - b)).toEqual([0, 9, 18, 27, 36, 45, 54]);
 
   // corners with obstruction
   fen = "B6K/8/8/8/4n3/8/8/k7 w - - 0 1";
-  expect(getMoves(fen, 0).sort((a, b) => a - b)).toEqual([9, 18, 27, 36]);
-  expect(getMoves(fen, 63).sort((a, b) => a - b)).toEqual([36, 45, 54]);
+  expect(getVisibility(fen, 0).sort((a, b) => a - b)).toEqual([9, 18, 27, 36]);
+  expect(getVisibility(fen, 63).sort((a, b) => a - b)).toEqual([36, 45, 54]);
 });
