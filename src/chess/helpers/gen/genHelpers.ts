@@ -11,3 +11,10 @@ export const indexToFileRank = (index: number): number[] => {
 export const fileRankToIndex = (file: number, rank: number) => {
   return ((8 - (rank - 1) - 1) * 8) + (file - 1);
 };
+
+export const squareToIndex = (square: string): number => {
+  const [fileChar, rankString] = square.split("");
+  const file = fileChar.toLowerCase().charCodeAt(0) - 96;
+  const rank = Number(rankString);
+  return fileRankToIndex(file, rank);
+};
