@@ -8,6 +8,7 @@ import knightCanMove from "./pieces/knight/knight";
 import bishopCanMove from "./pieces/bishop/bishop";
 import rookCanMove from "./pieces/rook/rook";
 import queenCanMove from "./pieces/queen/queen";
+import kingCanMove from "./pieces/king/king";
 
 const getFenFromMove = (
   fen: string,
@@ -34,6 +35,10 @@ const getFenFromMove = (
       break;
     case "q":
       if (!queenCanMove(fen, fromIndex, toIndex)) return fen;
+      break;
+    case "k":
+      if (!kingCanMove(fen, fromIndex, toIndex)) return fen;
+      break;
   }
 
   const pieceColor = getPieceColor(piece);
