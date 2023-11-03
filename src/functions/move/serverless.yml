@@ -6,6 +6,14 @@ getGameById:
         method: get
         cors:
           origin: "*"
+resetGame:
+  handler: src/functions/move/index.resetGameById
+  events:
+    - http:
+        path: resetGame/{id}
+        method: post
+        cors:
+          origin: "*"
 processMove:
   handler: src/functions/move/index.processMove
   events:
