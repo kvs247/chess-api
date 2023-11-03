@@ -60,7 +60,7 @@ function isKingInCheck(color: string, fen: string): boolean {
   }
 
   // king
-  const kingIndexes = getKingVisibility(index);
+  const kingIndexes = getKingVisibility(fen, index);
   for (const index of kingIndexes) {
     const piece = pieceArray[index];
     if (piece === null) continue;

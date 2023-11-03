@@ -11,7 +11,7 @@ resetGame:
   events:
     - http:
         path: resetGame/{id}
-        method: put
+        method: post
         cors:
           origin: "*"
 processMove:

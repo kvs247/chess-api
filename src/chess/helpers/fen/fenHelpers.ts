@@ -1,5 +1,5 @@
 import { ParsedFEN } from "../../../functions/move/types";
-import { PieceArray } from "../../types";
+import { PieceArray, ParsedCastlingRights } from "../../types";
 import { isNumeric } from "../gen/genHelpers";
 
 export const parseFen = (fen: string): ParsedFEN => {
@@ -11,6 +11,7 @@ export const parseFen = (fen: string): ParsedFEN => {
     halfmoveClock,
     fullmoveClock,
   ] = fen.split(" ");
+
   return {
     piecePlacement,
     activeColor,
@@ -18,6 +19,15 @@ export const parseFen = (fen: string): ParsedFEN => {
     enPassantTarget,
     halfmoveClock,
     fullmoveClock,
+  };
+};
+
+export const parseCastlingRights = (castlingRights: string): ParsedCastlingRights => {
+  return {
+    whiteCanCastleShort: castlingRights.includes("K"),
+    whiteCanCastleLong: castlingRights.includes("Q"),
+    blackCanCastleShort: castlingRights.includes("k"),
+    blackCanCastleLong: castlingRights.includes("q"),
   };
 };
 
@@ -39,7 +49,7 @@ export const fenToPieceArray = (fen: string): PieceArray => {
 
 export const pieceArrayToFen = (
   pieceArray: PieceArray,
-  suffix = " w KQkq - 0 1",
+  fenSuffix = " w KQkq - 0 1",
   ): string => {
     let result = "";
     
@@ -59,5 +69,5 @@ export const pieceArrayToFen = (
     result = result.replaceAll(pattern, String(i));
   }
   
-  return result + suffix;
+  return result + fenSuffix;
 };

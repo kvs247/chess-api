@@ -42,33 +42,65 @@ const getFenFromMove = (
       break;
   }
 
-  const pieceColor = getPieceColor(piece);
-  const newPieceColor = pieceColor === "w" ? "b" : "w";
+  const parsedFen = parseFen(fen);
+  let castlingRights = parsedFen.castlingRights;
+  
+  const currentPieceColor = getPieceColor(piece);
+  const newPieceColor = currentPieceColor === "w" ? "b" : "w";
   
   let enPassantTarget = "-";
   if (piece.toLowerCase() === "p" && Math.abs(fromIndex - toIndex) === 16) {
     const middleIndex = Math.min(fromIndex, toIndex) + 8;
     enPassantTarget = indexToSquare(middleIndex);
   }
-  
-  const suffix = ` ${newPieceColor} KQkq ${enPassantTarget} 0 1`;
-  
+
+  // generate new piece array
   pieceArray[fromIndex] = null;
   pieceArray[toIndex] = piece;
+  
   // en passant
-  const parsedFen = parseFen(fen);
   const enPassantSquare = parsedFen.enPassantTarget;
   const enPassantIndex = squareToIndex(enPassantSquare);
   if (toIndex === enPassantIndex) {
-    const sign = pieceColor === "w" ? 1 : -1;
+    const sign = currentPieceColor === "w" ? 1 : -1;
     const removeIndex = toIndex + (8 * sign);
     pieceArray[removeIndex] = null;
   }
 
-  const result = pieceArrayToFen(pieceArray, suffix);
+  // castling
+  if (piece === "R" && fromIndex === 63) castlingRights = castlingRights.replace(/K/g, "");
+  if (piece === "R" && fromIndex === 56) castlingRights = castlingRights.replace(/Q/g, "");
+  if (piece === "r" && fromIndex === 7) castlingRights = castlingRights.replace(/k/g, "");
+  if (piece === "r" && fromIndex === 0) castlingRights = castlingRights.replace(/q/g, "");
+
+  if (piece === "K" && fromIndex === 60) {
+    castlingRights = castlingRights.replace(/[KQ]/g, "");
+    if (toIndex === 62) {
+      pieceArray[63] = null;
+      pieceArray[61] = "R";
+    }
+    if (toIndex === 58) {
+      pieceArray[56] = null;
+      pieceArray[59] = "R";
+    }
+  }
+  if (piece === "k" && fromIndex === 4) {
+    castlingRights = castlingRights.replace(/[kq]/g, "");
+    if (toIndex === 6) {
+      pieceArray[7] = null;
+      pieceArray[5] = "r";
+    }
+    if (toIndex === 2) {
+      pieceArray[0] = null;
+      pieceArray[3] = "r";
+    }
+  }  
+
+  const fenSuffix = ` ${newPieceColor} ${castlingRights} ${enPassantTarget} 0 1`;
+  const result = pieceArrayToFen(pieceArray, fenSuffix);
 
   // check
-  if (isKingInCheck(pieceColor, result)) return fen;
+  if (isKingInCheck(currentPieceColor, result)) return fen;
 
   return result;
 };
