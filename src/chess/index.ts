@@ -21,6 +21,7 @@ const getFenFromMove = (
 
   if (piece === null) return fen;
 
+  // Can selected piece move to selected square?
   switch (piece.toLowerCase()) {
     case "p":
       if (!pawnCanMove(fen, fromIndex, toIndex)) return fen;
@@ -42,32 +43,30 @@ const getFenFromMove = (
       break;
   }
 
-  const parsedFen = parseFen(fen);
-  let castlingRights = parsedFen.castlingRights;
-  
-  const currentPieceColor = getPieceColor(piece);
-  const newPieceColor = currentPieceColor === "w" ? "b" : "w";
-  
-  let enPassantTarget = "-";
-  if (piece.toLowerCase() === "p" && Math.abs(fromIndex - toIndex) === 16) {
-    const middleIndex = Math.min(fromIndex, toIndex) + 8;
-    enPassantTarget = indexToSquare(middleIndex);
-  }
-
-  // generate new piece array
   pieceArray[fromIndex] = null;
   pieceArray[toIndex] = piece;
-  
+
+  const parsedFen = parseFen(fen);
+  const activePlayerColor = getPieceColor(piece);
+
   // en passant
+  let newEnPassantTarget = "-";
+  if (piece.toLowerCase() === "p" && Math.abs(fromIndex - toIndex) === 16) {
+    const middleIndex = Math.min(fromIndex, toIndex) + 8;
+    newEnPassantTarget = indexToSquare(middleIndex);
+  }
+
   const enPassantSquare = parsedFen.enPassantTarget;
   const enPassantIndex = squareToIndex(enPassantSquare);
   if (toIndex === enPassantIndex) {
-    const sign = currentPieceColor === "w" ? 1 : -1;
+    const sign = activePlayerColor === "w" ? 1 : -1;
     const removeIndex = toIndex + (8 * sign);
     pieceArray[removeIndex] = null;
   }
 
   // castling
+  let { castlingRights } = parsedFen;
+
   if (piece === "R" && fromIndex === 63) castlingRights = castlingRights.replace(/K/g, "");
   if (piece === "R" && fromIndex === 56) castlingRights = castlingRights.replace(/Q/g, "");
   if (piece === "r" && fromIndex === 7) castlingRights = castlingRights.replace(/k/g, "");
@@ -94,13 +93,15 @@ const getFenFromMove = (
       pieceArray[0] = null;
       pieceArray[3] = "r";
     }
-  }  
+  }
 
-  const fenSuffix = ` ${newPieceColor} ${castlingRights} ${enPassantTarget} 0 1`;
+  // Get new board FEN
+  const inactivePlayerColor = activePlayerColor === "w" ? "b" : "w";
+  const fenSuffix = ` ${inactivePlayerColor} ${castlingRights} ${newEnPassantTarget} 0 1`;
   const result = pieceArrayToFen(pieceArray, fenSuffix);
 
   // check
-  if (isKingInCheck(currentPieceColor, result)) return fen;
+  if (isKingInCheck(activePlayerColor, result)) return fen;
 
   return result;
 };

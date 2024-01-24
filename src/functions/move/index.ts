@@ -9,7 +9,7 @@ module.exports.processMove = async (event: APIGatewayProxyEvent) => {
   try {
     if (event.body) {
       const body: ProcessMoveRequest = JSON.parse(event.body);
-      // const body = event.body;
+      // const body = event.body; // testing
       const { fen, fromIndex, toIndex } = body;
       const newFen = getFenFromMove(fen, fromIndex, toIndex);
       const newGameState = {
