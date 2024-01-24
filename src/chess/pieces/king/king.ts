@@ -1,5 +1,5 @@
 import { fileRankToIndex, indexToFileRank } from "../../helpers/gen/genHelpers";
-import { getPieceColor, isFileRankOnBoard, moveTargetingFriendly } from "../helpers/helpers";
+import { getPieceColor, isFileRankOnBoard, isMoveTargetingFriendly } from "../helpers/helpers";
 import { parseFen, fenToPieceArray, parseCastlingRights } from "../../helpers/fen/fenHelpers";
 
 function kingCanMove(
@@ -8,7 +8,7 @@ function kingCanMove(
   toIndex: number,
 ): boolean {
 
-  if (moveTargetingFriendly(fen, fromIndex, toIndex)) return false;
+  if (isMoveTargetingFriendly(fen, fromIndex, toIndex)) return false;
 
   if (getVisibility(fen, fromIndex).includes(toIndex)) return true;
 

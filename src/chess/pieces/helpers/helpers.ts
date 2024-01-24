@@ -17,7 +17,7 @@ export const isFileRankOnBoard = (
   return false;
 };
 
-export const moveTargetingFriendly = (
+export const isMoveTargetingFriendly = (
   fen: string,
   fromIndex: number,
   toIndex: number,

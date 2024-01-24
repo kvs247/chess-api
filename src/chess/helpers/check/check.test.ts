@@ -1,6 +1,6 @@
 import isKingInCheck from "./check";
 
-test("test isKingInCheck pawn", () => {
+test("pawn giving check", () => {
   let fen = "1p6/8/8/3k4/4P3/8/8/7K b - - 0 1";
   expect(isKingInCheck("b", fen)).toEqual(true);
 
@@ -14,7 +14,7 @@ test("test isKingInCheck pawn", () => {
   expect(isKingInCheck("w", fen)).toEqual(false);
 });
 
-test("test isKingInCheck knight", () => {
+test("knight giving check", () => {
   let fen = "8/3N4/8/4k3/8/8/q7/7K b - - 0 1";
   expect(isKingInCheck("b", fen)).toEqual(true);
 
@@ -28,7 +28,7 @@ test("test isKingInCheck knight", () => {
   expect(isKingInCheck("w", fen)).toEqual(false);  
 });
 
-test("test isKingInCheck bishop", () => {
+test("bishop giving check", () => {
   let fen = "8/2B5/8/4k3/8/8/8/7K b - - 0 1";
   expect(isKingInCheck("b", fen)).toEqual(true);
 
@@ -50,7 +50,7 @@ test("test isKingInCheck bishop", () => {
   expect(isKingInCheck("w", fen)).toEqual(false);
 });
 
-test("test isKingInCheck rook", () => {
+test("rook giving check", () => {
   let fen = "8/8/8/3k2R1/8/8/8/7K b - - 0 1";
   expect(isKingInCheck("b", fen)).toEqual(true);
 
@@ -72,7 +72,7 @@ test("test isKingInCheck rook", () => {
   expect(isKingInCheck("w", fen)).toEqual(false);  
 });
 
-test("test isKingInCheck queen", () => {
+test("queen giving check", () => {
   let fen = "8/5Q2/8/3k4/8/8/8/7K b - - 0 1";
   expect(isKingInCheck("b", fen)).toEqual(true);
 
@@ -94,7 +94,7 @@ test("test isKingInCheck queen", () => {
   expect(isKingInCheck("w", fen)).toEqual(false);    
 });
 
-test("test isKingInCheck king", () => {
+test("king giving check", () => {
   let fen = "8/5kbB/4K3/8/8/8/8/8 b - - 0 1";
   expect(isKingInCheck("b", fen)).toEqual(true);
 

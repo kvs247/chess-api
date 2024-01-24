@@ -1,6 +1,6 @@
 import { parseFen, fenToPieceArray } from "../../helpers/fen/fenHelpers";
 import { fileRankToIndex, indexToFileRank, squareToIndex } from "../../helpers/gen/genHelpers";
-import { getPieceColor, moveTargetingFriendly } from "../helpers/helpers";
+import { getPieceColor, isMoveTargetingFriendly } from "../helpers/helpers";
 
 function pawnCanMove(
   fen: string,
@@ -8,7 +8,7 @@ function pawnCanMove(
   toIndex: number,
 ): boolean {
 
-  if (moveTargetingFriendly(fen, fromIndex, toIndex)) return false;
+  if (isMoveTargetingFriendly(fen, fromIndex, toIndex)) return false;
 
   if (getVisibility(fen, fromIndex).includes(toIndex)) return true;
 

@@ -2,7 +2,7 @@ import { fileRankToIndex, indexToFileRank } from "../../helpers/gen/genHelpers";
 import { fenToPieceArray } from "../../helpers/fen/fenHelpers";
 import {
   isFileRankOnBoard,
-  moveTargetingFriendly,
+  isMoveTargetingFriendly,
 } from "../helpers/helpers";
 
 function rookCanMove(
@@ -11,7 +11,7 @@ function rookCanMove(
   toIndex: number,
 ): boolean {
 
-  if (moveTargetingFriendly(fen, fromIndex, toIndex)) return false;
+  if (isMoveTargetingFriendly(fen, fromIndex, toIndex)) return false;
 
   if (getVisibility(fen, fromIndex).includes(toIndex)) return true;
 

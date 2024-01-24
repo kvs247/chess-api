@@ -1,6 +1,6 @@
-import queenCanMove, { getVisibility } from "./queen";
+import { getVisibility } from "./queen";
 
-test("test getVisibility", () => {
+test("getVisibility queen", () => {
   // no obstruction
   let fen = "8/6K1/1q6/8/8/8/2k5/8 w - - 0 1";
   expect(

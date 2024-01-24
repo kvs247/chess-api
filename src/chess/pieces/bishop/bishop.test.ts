@@ -1,6 +1,6 @@
 import bishopCanMove, { getVisibility } from "./bishop";
 
-test("test bishopCanMove", () => {
+test("bishopCanMove", () => {
   // corners
   let fen = "B6K/8/8/8/8/8/8/k7 w - - 0 1";
   expect(bishopCanMove(fen, 0, 54)).toEqual(true); // open square in range
@@ -16,7 +16,7 @@ test("test bishopCanMove", () => {
   expect(bishopCanMove(fen, 0, 45)).toEqual(false); // white bishop moving behind knight  
 });
 
-test("test getVisibility", () => {
+test("getVisibility bishop", () => {
   // corners
   let fen = "B6K/8/8/8/8/8/8/k7 w - - 0 1";
   expect(getVisibility(fen, 0).sort((a, b) => a - b)).toEqual([9, 18, 27, 36, 45, 54, 63]);

@@ -1,7 +1,7 @@
 import { getVisibility } from "./pawn";
 import { startingFen } from "../../startingPosition";
 
-test("test getVisibility", () => {
+test("getVisibility pawn", () => {
   // starting position
   let fen = startingFen;
   expect(getVisibility(fen, 8).sort((a, b) => a - b)).toEqual([16, 24]);

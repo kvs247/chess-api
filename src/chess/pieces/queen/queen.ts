@@ -1,4 +1,4 @@
-import { moveTargetingFriendly } from "../helpers/helpers";
+import { isMoveTargetingFriendly } from "../helpers/helpers";
 import { getVisibility as getBishopMoves } from "../bishop/bishop";
 import { getVisibility as getRookMoves } from "../rook/rook";
 
@@ -8,7 +8,7 @@ function queenCanMove(
   toIndex: number,
 ): boolean {
 
-  if (moveTargetingFriendly(fen, fromIndex, toIndex)) return false;
+  if (isMoveTargetingFriendly(fen, fromIndex, toIndex)) return false;
 
   if (getVisibility(fen, fromIndex).includes(toIndex)) return true;
 

@@ -1,7 +1,7 @@
 import { getVisibility } from "./king";
 import { startingFen } from "../../startingPosition";
 
-test("test getVisibility", () => {
+test("getVisibility king", () => {
   expect(getVisibility(startingFen, 4).sort((a, b) => a - b)).toEqual([3, 5, 11, 12, 13]);
   expect(getVisibility(startingFen, 60).sort((a, b) => a - b)).toEqual([51, 52, 53, 59, 61]);
 

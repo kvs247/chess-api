@@ -1,7 +1,7 @@
 import { indexToFileRank, fileRankToIndex } from "../../helpers/gen/genHelpers";
 import {
   isFileRankOnBoard,
-  moveTargetingFriendly,
+  isMoveTargetingFriendly,
 } from "../helpers/helpers";
 
 function knightCanMove(
@@ -10,7 +10,7 @@ function knightCanMove(
   toIndex: number,
 ): boolean {
 
-  if (moveTargetingFriendly(fen, fromIndex, toIndex)) return false;
+  if (isMoveTargetingFriendly(fen, fromIndex, toIndex)) return false;
 
   if (getVisibility(fromIndex).includes(toIndex)) return true;
 
