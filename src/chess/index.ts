@@ -47,7 +47,11 @@ const getFenFromMove = (
   pieceArray[toIndex] = piece;
 
   const parsedFen = parseFen(fen);
-  const activePlayerColor = getPieceColor(piece);
+  const { activeColor, enPassantTarget } = parsedFen;
+  const selectedPieceColor = getPieceColor(piece);
+
+  // active player's piece
+  if (activeColor !== selectedPieceColor) return fen;
 
   // en passant
   let newEnPassantTarget = "-";
@@ -56,10 +60,9 @@ const getFenFromMove = (
     newEnPassantTarget = indexToSquare(middleIndex);
   }
 
-  const enPassantSquare = parsedFen.enPassantTarget;
-  const enPassantIndex = squareToIndex(enPassantSquare);
+  const enPassantIndex = squareToIndex(enPassantTarget);
   if (toIndex === enPassantIndex) {
-    const sign = activePlayerColor === "w" ? 1 : -1;
+    const sign = activeColor === "w" ? 1 : -1;
     const removeIndex = toIndex + (8 * sign);
     pieceArray[removeIndex] = null;
   }
@@ -96,12 +99,12 @@ const getFenFromMove = (
   }
 
   // Get new board FEN
-  const inactivePlayerColor = activePlayerColor === "w" ? "b" : "w";
+  const inactivePlayerColor = activeColor === "w" ? "b" : "w";
   const fenSuffix = ` ${inactivePlayerColor} ${castlingRights} ${newEnPassantTarget} 0 1`;
   const result = pieceArrayToFen(pieceArray, fenSuffix);
 
   // check
-  if (isKingInCheck(activePlayerColor, result)) return fen;
+  if (isKingInCheck(activeColor, result)) return fen;
 
   return result;
 };

@@ -1,2 +1,2 @@
 *Chess Logic*
-1. pawn promotion
+- pawn promotion
