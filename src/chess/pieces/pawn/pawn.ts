@@ -44,7 +44,7 @@ export const getVisibility = (fen: string, index: number): number[] => {
     targetRank = rank + (sign * 2);
     targetIndex = fileRankToIndex(targetFile, targetRank);
     targetPiece = pieceArray[targetIndex];
-    middlePiece = pieceArray[targetIndex - 8];
+    middlePiece = pieceArray[targetIndex + (sign * 8)];
     if (targetPiece === null && middlePiece == null) moves.push(targetIndex);
   }
 
