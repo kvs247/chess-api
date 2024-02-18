@@ -58,6 +58,8 @@ module.exports.resetGameById = async (event: APIGatewayProxyEvent) => {
     ) {
       const gameId = event.pathParameters.id;
       await resetGame(gameId);
+      const message = "Success"
+      return buildResponse(200, { message });
     } else {
       const message = "event does not have pathParameters";
       console.log("error: ", message);
